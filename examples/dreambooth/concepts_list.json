@@ -1,42 +1,34 @@
 [
     {
       "instance_prompt": "valid warehouse layouts: any two tiles of blue, pink, or orange color are connected through a path with non-black tiles_13x7",
-      "class_prompt": "warehouse layout",
       "instance_data_dir": "valid-warehouse"
     },
     {
       "instance_prompt": "valid warehouse layouts: any two tiles of blue, pink, or orange color are connected through a path with non-black tiles 14x11",
-      "class_prompt": "warehouse layout",
       "instance_data_dir": "valid-warehouse"
     },
     {
       "instance_prompt": "valid warehouse layouts: any two tiles of blue, pink, or orange color are connected through a path with non-black tiles 14x12",
-      "class_prompt": "warehouse layout",
       "instance_data_dir": "valid-warehouse"
     },
     {
       "instance_prompt": "valid warehouse layouts: any two tiles of blue, pink, or orange color are connected through a path with non-black tiles 15x12",
-      "class_prompt": "warehouse layout",
       "instance_data_dir": "valid-warehouse"
     },
     {
       "instance_prompt": "valid warehouse layouts: any two tiles of blue, pink, or orange color are connected through a path with non-black tiles 15x8",
-      "class_prompt": "warehouse layout",
       "instance_data_dir": "valid-warehouse"
     },
     {
       "instance_prompt": "valid warehouse layouts: each black tile is adjacent to atleast two blue tiles 13x7",
-      "class_prompt": "warehouse layout",
       "instance_data_dir": "valid-warehouse"
     },
     {
       "instance_prompt": "valid warehouse layouts: each black tile is adjacent to atleast two blue tiles 15x7",
-      "class_prompt": "warehouse layout",
       "instance_data_dir": "valid-warehouse"
     },
     {
       "instance_prompt": "valid warehouse layouts: each black tile is adjacent to atleast two blue tiles 15x8",
-      "class_prompt": "warehouse layout",
       "instance_data_dir": "valid-warehouse"
     }
   ]
