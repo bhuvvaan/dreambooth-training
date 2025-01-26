@@ -35,8 +35,8 @@ pip install -U -r requirements.txt
 huggingface-cli login --token your-token
 
 export MODEL_NAME="CompVis/stable-diffusion-v1-4"
-export INSTANCE_DIR="valid-warehouse"
-export OUTPUT_DIR="db-valid-warehouse-try7"
+export INSTANCE_DIR="valid-warehouse" --your data folder on the hub
+export OUTPUT_DIR="db-valid-warehouse" --your output folder on the hub
 
 accelerate launch train_dreambooth.py \
   --pretrained_model_name_or_path=$MODEL_NAME \
