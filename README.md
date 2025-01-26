@@ -1,7 +1,7 @@
 
-If running on GCP use the following configurations for your VM instance, _Deep Learning VM for PyTorch 2.3 with CUDA 12.1, M125, Debian 11, Python 3.10, with PyTorch 2.3 and fast.ai preinstalled"
+If running on GCP use the following configurations for your VM instance, _Deep Learning VM for PyTorch 2.3 with CUDA 12.1, M125, Debian 11, Python 3.10, with PyTorch 2.3 and fast.ai preinstalled_
 
-Train data for dreambooth needs to be on Huggingface Hub for easy access from any system_
+Training data for dreambooth needs to be on Huggingface Hub for easy access from any system
 
 ```bash
 #!/bin/bash
