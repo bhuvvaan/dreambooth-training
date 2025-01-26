@@ -1,7 +1,7 @@
 
 If running on GCP use the following configurations for your VM instance, _Deep Learning VM for PyTorch 2.3 with CUDA 12.1, M125, Debian 11, Python 3.10, with PyTorch 2.3 and fast.ai preinstalled_
 
-Training data for dreambooth needs to be on Huggingface Hub for easy access from any system
+Training data for dreambooth needs to be on Huggingface Hub for easy access from any system. The dataset used in the code below is at [https://huggingface.co/datasets/bhuv1-c/valid-warehouses-dataset](https://huggingface.co/datasets/bhuv1-c/valid-warehouses-dataset).
 
 ```bash
 #!/bin/bash
@@ -55,6 +55,8 @@ accelerate launch train_dreambooth.py \
   --push_to_hub
 
 ```
+
+Hyperparameters can be changed according to the users convenience. A helpful guide on hyperparameters can be found at [https://huggingface.co/blog/dreambooth](https://huggingface.co/blog/dreambooth).
 
 For original diffusers readme, refer to [https://github.com/huggingface/diffusers](url)
 
