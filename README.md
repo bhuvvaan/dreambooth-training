@@ -34,7 +34,7 @@ pip install -U -r requirements.txt
 # Login to Hugging Face
 huggingface-cli login --token #your token here
 
-export MODEL_NAME="CompVis/stable-diffusion-v1-5" # Model on the hub
+export MODEL_NAME="CompVis/stable-diffusion-v1-4" # Model on the hub
 export INSTANCE_HF_REPO="bhuv1-c/fruits-for-intent" # Dataset on the hub
 export INSTANCE_DIR="fruits-for-intent" # Local dataset directory
 export OUTPUT_DIR="md-intent-prediction-data-2" # Output folder on the hub
