@@ -32,23 +32,66 @@ cd examples/dreambooth
 pip install -U -r requirements.txt
 
 # Login to Hugging Face
-huggingface-cli login --token your-token
+huggingface-cli login --token #your token here
 
-export MODEL_NAME="CompVis/stable-diffusion-v1-4"
-export INSTANCE_DIR="valid-warehouse" #your data folder on the hub
-export OUTPUT_DIR="db-valid-warehouse" #your output folder on the hub
+export MODEL_NAME="CompVis/stable-diffusion-v1-5" # Model on the hub
+export INSTANCE_HF_REPO="bhuv1-c/fruits-for-intent" # Dataset on the hub
+export INSTANCE_DIR="fruits-for-intent" # Local dataset directory
+export OUTPUT_DIR="md-intent-prediction-data-2" # Output folder on the hub
 
+# Download dataset from Hugging Face Hub (only images)
+python3 <<EOF
+import os
+from huggingface_hub import snapshot_download
+
+# Download all files
+repo_dir = snapshot_download(
+    repo_id="bhuv1-c/fruits-for-intent",  # Correct string format
+    local_dir="fruits-for-intent",
+    repo_type="dataset",
+    local_dir_use_symlinks=False  # Prevents extra cache files
+)
+
+# Filter only image files
+valid_exts = {'.png', '.jpg', '.jpeg', '.bmp', '.gif', '.webp'}
+for root, _, files in os.walk(repo_dir):
+    for file in files:
+        if not any(file.lower().endswith(ext) for ext in valid_exts):
+            os.remove(os.path.join(root, file))  # Delete non-image files
+
+# Check if dataset is present before training
+image_files = [f for f in os.listdir(repo_dir) if f.lower().endswith(tuple(valid_exts))]
+if not image_files:
+    print("Error: No images found in dataset. Exiting.")
+    exit(1)
+
+print("Dataset downloaded and cleaned successfully!")
+EOF
+
+# Ensure dataset exists before proceeding
+if [ ! -d "$INSTANCE_DIR" ]; then
+  echo "Error: Dataset folder '$INSTANCE_DIR' does not exist!"
+  exit 1
+fi
+
+# Remove any .cache directories
+if [ -d "$INSTANCE_DIR/.cache" ]; then
+  rm -rf "$INSTANCE_DIR/.cache"
+  echo "Removed .cache directory."
+fi
+
+# Run training
 accelerate launch train_dreambooth.py \
   --pretrained_model_name_or_path=$MODEL_NAME \
   --instance_data_dir=$INSTANCE_DIR \
   --output_dir=$OUTPUT_DIR \
   --train_text_encoder \
- --instance_prompt="any two tiles of blue color are connected through a path with non-black tiles, each blue tile is adjacent to at least one black tile, each black tile is adjacent to at least two blue tiles." \
-  --class_prompt="valid warehouse layout" \
+  --instance_prompt="a close-up photo of an apple, two lemon, one lime, one onion, three oranges and pear on a rustic wooden table"\
+  --class_prompt="fruits on table" \
   --resolution=256 \
   --train_batch_size=1 \
-  --gradient_accumulation_steps=4\
-  --learning_rate=3e-6\
+  --gradient_accumulation_steps=4 \
+  --learning_rate=3e-6 \
   --lr_scheduler="constant" \
   --lr_warmup_steps=0 \
   --max_train_steps=800 \
